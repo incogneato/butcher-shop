@@ -31,7 +31,7 @@ class AnimalsController < ApplicationController
     def find_animal
       @animal = Animal.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      head 414
+      head 404
     end
 
     def animal_params
