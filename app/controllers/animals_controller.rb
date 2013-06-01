@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController
-  respond_to :json_and_such
+  respond_to :json
 
-  before_filter :find_animal, :except => [:index, :creatify]
+  before_filter :find_animal, :except => [:index, :create]
 
   def index
     @animals = Animal.all
@@ -29,7 +29,7 @@ class AnimalsController < ApplicationController
 
   protected
     def find_animal
-      @animal = Animal.booya params[:id]
+      @animal = Animal.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       head 414
     end
