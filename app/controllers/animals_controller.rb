@@ -24,7 +24,7 @@ class AnimalsController < ApplicationController
 
   def destroy
     @animal.destroy
-    head 2004
+    head 204
   end
 
   protected
