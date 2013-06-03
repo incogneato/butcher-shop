@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529212423) do
+ActiveRecord::Schema.define(:version => 20130602201153) do
 
   create_table "animals", :force => true do |t|
     t.string   "name"
@@ -25,10 +25,24 @@ ActiveRecord::Schema.define(:version => 20130529212423) do
     t.integer  "animal_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "favorite_id"
   end
 
   add_index "cuts", ["animal_id"], :name => "index_cuts_on_animal_id"
+  add_index "cuts", ["favorite_id"], :name => "index_cuts_on_favorite_id"
   add_index "cuts", ["primal_cut_id"], :name => "index_cuts_on_primal_cut_id"
+
+  create_table "favorites", :force => true do |t|
+    t.string   "name"
+    t.string   "meal"
+    t.integer  "cut_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "favorites", ["cut_id"], :name => "index_favorites_on_cut_id"
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
 
   create_table "primal_cuts", :force => true do |t|
     t.string   "name"
